@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.Scanner;
 
-// 리퀘스트, 리스펀스
+// 리퀘스트(request), 리스폰스(response)
 public class MyClient4 {
     public static void main(String[] args) {
         try {
@@ -21,7 +21,7 @@ public class MyClient4 {
             // 연결된 소켓에 읽기 버퍼 연결
             Scanner socketSc = new Scanner(socket.getInputStream());
 
-            Person person = new Person(1, "홍길동", 20, Arrays.asList("축구", "농구"));
+            Person person = new Person(1, "홍길동", 19, Arrays.asList("축구", "농구"));
             Gson gson = new Gson();
             String json = "";
             json = gson.toJson(person);

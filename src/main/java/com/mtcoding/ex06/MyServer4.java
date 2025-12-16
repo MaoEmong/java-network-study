@@ -33,6 +33,9 @@ public class MyServer4 {
                 System.out.println(p.getHobby().get(1));
 
                 pw.println("OK");
+
+                if(p.getAge() > 18)pw.println("성인");
+                if(p.getAge() <= 18)pw.println("미성년자");
             }
 
         } catch (Exception e) {
