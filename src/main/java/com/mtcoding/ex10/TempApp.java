@@ -1,5 +1,8 @@
 package com.mtcoding.ex10;
 
+import com.google.gson.Gson;
+import com.mtcoding.MyKeys;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -8,7 +11,7 @@ public class TempApp {
     public static void main(String[] args) {
         try {
             // 1. ip와 port를 통해 소켓을 만들고 스트림 연결
-            URL url = new URL("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=9ed1dccd7fc4277ff41975d76c082fb531ef7f0ac92676c40d8b0e1a8975d14d&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20251218&base_time=1200&nx=98&ny=75#");
+            URL url = new URL("https://apis.data.go.kr/1613000/DmstcFlightNvgInfoService/getFlightOpratInfoList?serviceKey="+MyKeys.kDataKey+"&pageNo=1&numOfRows=10&_type=json&depAirportId=NAARKPK&arrAirportId=NAARKPC&depPlandTime=20251219&airlineId=JJA");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
             con.setRequestMethod("GET");
@@ -21,7 +24,19 @@ public class TempApp {
                 json += line;
                 json += "\n";
             }
-            System.out.println(json);
+//            Hello h = new Gson().fromJson(json, Hello.class);
+            
+            Gson gson = new Gson();
+            // 1. String형 데이터인 json을 Hello Object로 변경
+            Hello hello = gson.fromJson(json, Hello.class);
+
+            for(var data : hello.getResponse().getBody().getItems().getItem())
+            {
+                System.out.println(data);
+            }
+
+            // 2. Hello Object를 String형인 json으로 변경
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

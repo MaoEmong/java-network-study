@@ -1,5 +1,7 @@
 package com.mtcoding.ex10;
 
+import com.mtcoding.MyKeys;
+
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,7 +12,7 @@ public class URLConnectionReader {
     public static void main(String[] args) {
         try {
             // 1. ip와 port를 통해 소켓을 만들고 스트림 연결
-            URL url = new URL("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%82%A0%EC%94%A8&ackey=6bcutvt2");
+            URL url = new URL("https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey="+ MyKeys.kDataKey +"&pageNo=1&numOfRows=1000&dataType=JSON&base_date=20251218&base_time=1200&nx=98&ny=75#");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
             con.setRequestMethod("GET");
