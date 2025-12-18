@@ -41,3 +41,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# 🔐 민감 정보 파일
+src/main/java/com/mtcoding/MyKeys.java
