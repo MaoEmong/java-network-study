@@ -1,4 +1,4 @@
-package com.mtcoding.ex09;
+package com.mtcoding.ex00;
 
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -13,10 +13,14 @@ public class ChatClient {
             Scanner receiver = new Scanner(socket.getInputStream());
             PrintWriter sender = new PrintWriter(socket.getOutputStream(), true);
 
+            System.out.print("채팅 닉네임 입력 : ");
+            String name = keyboard.nextLine();
+            sender.println(name);
+
             // 1. 송신 스레드
             new Thread(() -> {
                 while(true){
-                    System.out.println("[client] 쓰기 스레드 키보드 입력 대기중--------");
+//                    System.out.println("[client] 쓰기 스레드 키보드 입력 대기중--------");
                     String msg = keyboard.nextLine();
                     sender.println(msg);
                 }
@@ -25,7 +29,7 @@ public class ChatClient {
             // 2. 읽기 스레드
             new Thread(() -> {
                 while(true){
-                    System.out.println("[client] 읽기 스레드 다른 사람 메시지 수신 대기중--------");
+//                    System.out.println("[client] 읽기 스레드 다른 사람 메시지 수신 대기중--------");
                     String msg = receiver.nextLine();
                     System.out.println(msg);
                 }
